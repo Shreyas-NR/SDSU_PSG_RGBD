@@ -7,7 +7,6 @@
 
 ### Software:
 1. Intel Realsense SDK 2.0 - https://github.com/IntelRealSense/librealsense/releases/download/v2.53.1/Intel.RealSense.SDK-WIN10-2.53.1.4623.exe
- https://github.com/IntelRealSense/librealsense/releases/download/v2.49.0/Intel.RealSense.Viewer.exe
 
 
 ##  Installation Steps:
