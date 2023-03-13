@@ -28,15 +28,17 @@
 2. Connect the Intel RealSense Camera to the USB 3.0 port of the PC  
 3. You should see your device connected.  
    ![](assets/FirmwareUpdate.JPG)  
+   ![](assets/connectedDevice.JPG) 
 4. Update the **Firmware** (If there is a popup) and enable **Frame Metadata**.  
-5. Turn ON the Stereo View.  
+5. Turn ON the Stereo View toggling the Stereo Module.  
 6. Configure the below parameters,
-    1. Tune the Minimum and Maximum distance value in meters between the camera lens and the object of interest(here person in the field of view)
-    2. Make sure there are no dead depth pixels around the area of interest. The image below has dead pixels around the person.  
+    - Tune the Minimum and Maximum distance value in meters between the camera lens and the object of interest(here person in the field of view)
+    - Make sure there are no dead depth pixels around the area of interest. The image below has dead pixels around the person.  
        ![](assets/testDepth.png)  
-    3. Change the color scheme to **Black to White**.
-    4. Set the resoltion to 640x480 and FPS to 60 (TBD)
-    5. Post processing ON/OFF 
+    - Change the color scheme to **Black to White**.
+    - Set the resoltion to 640x480 and FPS to 60 (TBD)
+    - Post processing ON  
+       ![](assets/viewer_settings.JPG)  
 7. Click on the **Record** button.
 
 ## Video Playback:
@@ -72,15 +74,15 @@
 2. Height at which the cameras are mounted?
 
 ## Action Classes:
-1. A1. Normal Walking
-2. A2. Sitting on a couch
-3. A3. Getting off the couch
-4. A4. Stumble
-5. A5. Fainting
-6. A6. Falling
-7. A7. Hazardous Pose in workplace environment
-8. A8. Pushing other person.
-9. A9. Colliding to any object.
+- A1. Normal Walking
+- A2. Sitting on a couch
+- A3. Getting off the couch
+- A4. Stumble
+- A5. Fainting
+- A6. Falling
+- A7. Hazardous Pose in workplace environment
+- A8. Pushing other person.
+- A9. Colliding to any object.
 
 ## Number of people in filed of view of C1 and C2
 1. Single person
@@ -91,16 +93,16 @@
    - RGB videos
    - Depth map sequences
    - 2D and 3D skeletal data
-   - infrared (IR) videos (TBD)
+   - infrared (IR) videos? (TBD)
 
 ## Data Split:
 1. Data should be divided into Train, Validation and Test in the ratio of 60:20:20 
 
 ## Annotation:
-1. Tool: [COCO Annotator](https://github.com/jsbroks/coco-annotator)
+1. Tool: COCO Annotator [repo link](https://github.com/jsbroks/coco-annotator)
 2. Clone the repo from the above link.
-3. Follow the readMe file available in the COCO Annotator repository.
-4. move the frames to Dataset directory.
+3. Follow the instructions in readMe file available in COCO Annotator repository.
+4. Start the docker and move the frames to Dataset directory.
 5. Categories
    - Boundary box per person in frame [Xmin, Ymin, Xmax, Ymax]
    - 2D coordinates of HumanPose  
@@ -123,6 +125,7 @@
     14: 'LFoot',
 }`
    - Fall / No-Fall
+6. After completion of annotating all the frames, export the annotations to any other directory on your workstation.
 
 ## File Naming Convention:
 - Each file/folder name is in the format of SsssCcccPpppRrrrAaaa (e.g., S001C002P003R004A005), in which
