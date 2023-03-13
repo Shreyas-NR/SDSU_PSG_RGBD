@@ -28,8 +28,8 @@
 2. Connect the Intel RealSense Camera to the USB 3.0 port of the PC  
 3. You should see your device connected.  
    ![](assets/FirmwareUpdate.JPG)  
-   ![](assets/connectedDevice.JPG) 
 4. Update the **Firmware** (If there is a popup) and enable **Frame Metadata**.  
+   ![](assets/connectedDevice.JPG)  
 5. Turn ON the Stereo View toggling the Stereo Module.  
 6. Configure the below parameters,
     - Tune the Minimum and Maximum distance value in meters between the camera lens and the object of interest(here person in the field of view)
