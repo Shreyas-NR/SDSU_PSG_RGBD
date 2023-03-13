@@ -23,7 +23,7 @@ try:
     config = rs.config()
 
     # Tell config that we will use a recorded device from file to be used by the pipeline through playback.
-    rs.config.enable_device_from_file(config, file_name='black2white.bag', repeat_playback=True)
+    rs.config.enable_device_from_file(config, file_name='black2white.bag', repeat_playback=False)
 
     # Configure the pipeline to stream the depth stream
     # Change this parameters according to the recorded bag file resolution
@@ -83,7 +83,7 @@ try:
             break
 except RuntimeError:
     print("No more frames left")
-    print("Total Number of Frames it the bag file = ", i)
+    print("Total Number of Frames in the bag file = ", i)
 
 
 finally:
