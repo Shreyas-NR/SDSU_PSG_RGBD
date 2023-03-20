@@ -73,6 +73,15 @@
 1. The actual distance between the camera and the participant?
 2. Height at which the cameras are mounted?
 
+## Participant record:
+| Participant ID | Gender | Age | Height(units) | Weight(units) |
+| :----: | :----: | :----: | :----: | :----: |
+| P1 | M | 50 | 175 cm | 80 Kg |
+| P2 | F | 40 | 150 cm | 60 Kg |
+| P3 | M | 30 | 189 cm | 70 Kg |
+| Pn | M | - | - | - |
+
+
 ## Action Classes:
 - A1. Normal Walking
 - A2. Sitting on a couch
