@@ -36,16 +36,48 @@
     - Make sure there are no dead depth pixels around the area of interest. The image below has dead pixels around the person.  
        ![](assets/testDepth.png)  
     - Change the color scheme to **Black to White**.
-    - Set the resoltion to 640x480 and FPS to 60 (TBD)
+    - Set the resoltion to 640x480 and FPS to 30
     - Post processing ON  
        ![](assets/viewer_settings.JPG)  
-7. Click on the **Record** button.
+7. Turn ON the RGB Camera View toggling the RGB Camera Module.  
+8. Configure the below parameters,
+    - Set the resoltion to 640x480 and FPS to 30
+     - Under Available streams,  
+     Enable Color and select RGB8,  
+     Enable Auto Exposure
+      - Post-Processing ON  
+      ![](assets/recordSettings.PNG)
+9. Click on the **Record** button.
+10. Click on **STOP** button to stop recording.
 
-## Video Playback:
+## Extraction of frame data from the raw .bag file:
+1. Open Windows Powershell on your computer.
+2. Navigate to the Realsense SDK installation directory.\
+   `cd ..\..\Program Files (x86)\Intel RealSense SDK 2.0\tools\`
+3. Invoke the re-convert.exe with the following command to extract frames in PNG and metadata for each in CSV.
+   `.\rs-convert.exe -i .\<inputfile.bag> -v <path-to-the-output-directory>`
+4. Invoke the re-convert.exe with the following command to extract frames into binary file format BIN.
+   `.\rs-convert.exe -i .\<inputfile.bag> -b <path-to-the-output-directory>`
+5. Reference image  
+   ![](assets/rs_convert.JPG)
+
+<!-- ## To Validate the recorded frames alignment
+1. Copy a set of color and depth frame to the [input](inputs) directory, and 
+2. Execute the MATLAB script frame_fuse.mlx given [here](MATLABscripts\frame_fuse.mlx) making necessary changes to read the new input file.
+3. The output is available in the [outputs](outputs) directory. -->
+
+## Exporting .bag file to frames (color frame aligned to depth frame):
+1. The RealSense Viewer application saves a **.bag** file.
+2. Edit the file name in Line 18 of *save_bag2aligned_frames.py*.
+3. Execute the python file **save_bag2aligned_frames.py** from `./python_scripts/save_bag2aligned_frames.py` 
+4. The script saves the binary(.npy) of blended-aligned rgb and depth frame.  
+5. After the execution observe the console for number of frames saved. Make sure the output of rs-convert and the number of frames displayed on console matches. 
+
+## Video Playback:(Optional)
 1. After recording the video, click on **STOP** button to stop recording.
 2. The RealSense Viewer application saves a **.bag** file.
 3. Execute the python file **playback.py** from *SDSU_PSG_RGBD/python_scripts/playback.py* 
-4. Edit the file name in Line 26 of playback.py. Edit the fps value in Line 30 with the value cofigured during the recording process.
+4. Edit the file name in Line 19 of playback.py. Edit the fps value in Line 30 with the value cofigured during the recording process.
 5. Run the script, you should see a window **Depth Stream** playing the video frames.
 6. Once all the frames are viewed in the window, the window closes automatically and the total number of frames are displayed/printed out.
 **" Total Number of Frames in the bag file = # "** 
@@ -111,7 +143,9 @@
 1. Tool: COCO Annotator [repo link](https://github.com/jsbroks/coco-annotator)
 2. Clone the repo from the above link.
 3. Follow the instructions in readMe file available in COCO Annotator repository.
-4. Start the docker and move the frames to Dataset directory.
+4. Start the docker.  
+5. Move the frames to Dataset directory.
+   - Convert the fused frames.npy(output from the execution of save_bag2aligned_frames.py) to png/jpg from MATLAB - **WIP**
 5. Categories
    - Boundary box per person in frame [Xmin, Ymin, Xmax, Ymax]
    - 2D coordinates of HumanPose  
@@ -134,7 +168,14 @@
     14: 'LFoot',
 }`
    - Fall / No-Fall
-6. After completion of annotating all the frames, export the annotations to any other directory on your workstation.
+6. Sample frame being annotated.
+   ![](assets/URFall_annotation_0040.png)
+   In the above figure,
+   1. the frame that we see is a blend frame of RGB and Depth frames 
+   2. It is visible that RGB and Depth frames are not aligned to each other. Hence the discrepencies. 
+   3. The pale red color box is the boundary box covering the region of the person.
+   4. The keypoints represents the 15 joint position of interest.
+7. After completion of annotating all the frames, export the annotations to any other directory on your workstation.
 
 ## File Naming Convention:
 - Each file/folder name is in the format of SsssCcccPpppRrrrAaaa (e.g., S001C002P003R004A005), in which
