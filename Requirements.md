@@ -49,16 +49,20 @@
       ![](assets/recordSettings.PNG)
 9. Click on the **Record** button.
 10. Click on **STOP** button to stop recording.
+11. The RealSense Viewer application saves a **.bag** file.
 
 ## Extraction of frame data from the raw .bag file:
 1. Open Windows Powershell on your computer.
 2. Navigate to the Realsense SDK installation directory.\
    `cd ..\..\Program Files (x86)\Intel RealSense SDK 2.0\tools\`
-3. Invoke the re-convert.exe with the following command to extract frames in PNG and metadata for each in CSV.
+3. Invoke the re-convert.exe with the following command to extract frames in CSV and metadata text files for each in frame.\
    `.\rs-convert.exe -i .\<inputfile.bag> -v <path-to-the-output-directory>`
-4. Invoke the re-convert.exe with the following command to extract frames into binary file format BIN.
+4. Invoke the re-convert.exe with the following command to extract frames into binary file format BIN.\
    `.\rs-convert.exe -i .\<inputfile.bag> -b <path-to-the-output-directory>`
-5. Reference image  
+5. Invoke the re-convert.exe with the following command to extract frames into PNG file format.\
+   `.\rs-convert.exe -i .\<inputfile.bag> -p <path-to-the-output-directory>`
+6. Reference link for more options, [https://github.com/IntelRealSense/librealsense/tree/master/tools/convert](https://github.com/IntelRealSense/librealsense/tree/master/tools/convert)
+7. Reference image  
    ![](assets/rs_convert.JPG)
 
 <!-- ## To Validate the recorded frames alignment
@@ -68,18 +72,34 @@
 
 ## Exporting .bag file to frames (color frame aligned to depth frame):
 1. The RealSense Viewer application saves a **.bag** file.
-2. Edit the file name in Line 18 of *save_bag2aligned_frames.py*.
-3. Execute the python file **save_bag2aligned_frames.py** from `./python_scripts/save_bag2aligned_frames.py` 
-4. The script saves the binary(.npy) of blended-aligned rgb and depth frame.  
+2. Edit the file name in Line 220 of *extractBag.py*.
+3. Execute the python file **extractBag.py** from \
+`./python_scripts/extractBag.py` 
+4. Input number 2 as input to process the bag file and save its content on disk.
+5. The script saves the below items
+   - camera_intrinsics.txt
+   - video file of the recording streams stacked horizontally,
+   - depth
+      - npy - shape=480,640
+      - png - colorized depth, shape=480,640,1
+   - RGB
+      - npy
+      - png
+   - fused
+      - npy
+      - png
+      
 5. After the execution observe the console for number of frames saved. Make sure the output of rs-convert and the number of frames displayed on console matches. 
 
 ## Video Playback:(Optional)
-1. After recording the video, click on **STOP** button to stop recording.
-2. The RealSense Viewer application saves a **.bag** file.
-3. Execute the python file **playback.py** from *SDSU_PSG_RGBD/python_scripts/playback.py* 
-4. Edit the file name in Line 19 of playback.py. Edit the fps value in Line 30 with the value cofigured during the recording process.
-5. Run the script, you should see a window **Depth Stream** playing the video frames.
-6. Once all the frames are viewed in the window, the window closes automatically and the total number of frames are displayed/printed out.
+1. Execute the python file **extractBag.py** from \
+`./python_scripts/extractBag.py` 
+2. Input number 1 for video playback.
+3. Another option is using *playback.py* 
+4. Edit the 'filename' variable in Line 18 of playback.py. Edit the fps value in Line 30 with the value cofigured during the recording process.
+5. Execute the python file **playback.py** from *SDSU_PSG_RGBD/python_scripts/playback.py* 
+6. Run the script, you should see a window **Depth Stream** playing the video frames.
+7. Once all the frames are viewed in the window, the window closes automatically and the total number of frames are displayed/printed out.
 **" Total Number of Frames in the bag file = # "** 
 
 ## Camera view point options:
@@ -185,6 +205,9 @@
    - rrr is the replication number (1 or 2), and 
    - aaa is the action class label.
 
-
-
+### Reference Dataset available
+1. [https://falldataset.com/](https://falldataset.com/)
+2. [http://fenix.ur.edu.pl/mkepski/ds/uf.html](http://fenix.ur.edu.pl/mkepski/ds/uf.html)
+3. [https://sites.google.com/site/occlusiondataset/](https://sites.google.com/site/occlusiondataset/)
+4. [http://vlm1.uta.edu/~athitsos/publications/zhang_isvc2014.pdf](http://vlm1.uta.edu/~athitsos/publications/zhang_isvc2014.pdf)
 
