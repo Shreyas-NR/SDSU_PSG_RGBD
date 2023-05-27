@@ -72,7 +72,7 @@
 
 ## Exporting .bag file to frames (color frame aligned to depth frame):
 1. The RealSense Viewer application saves a **.bag** file.
-2. Edit the file name in Line 220 of *extractBag.py*.
+2. Edit the filepath in Line 10 of *extractBag.py*.
 3. Execute the python file **extractBag.py** from \
 `./python_scripts/extractBag.py` 
 4. Input number 2 as input to process the bag file and save its content on disk.
@@ -85,7 +85,7 @@
    - RGB
       - npy
       - png
-   - fused
+   - aligned_rgbd
       - npy
       - png
       
@@ -205,7 +205,7 @@
    - rrr is the replication number (1 or 2), and 
    - aaa is the action class label.
 
-### Reference Dataset available
+## Reference Dataset available
 1. [https://falldataset.com/](https://falldataset.com/)
 2. [http://fenix.ur.edu.pl/mkepski/ds/uf.html](http://fenix.ur.edu.pl/mkepski/ds/uf.html)
 3. [https://sites.google.com/site/occlusiondataset/](https://sites.google.com/site/occlusiondataset/)
